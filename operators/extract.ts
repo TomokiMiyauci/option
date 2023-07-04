@@ -30,6 +30,24 @@ export function unwrap<T>(option: Option<T>): T {
   throw new Error("option is None");
 }
 
+/** Returns the contained `Some` value, otherwise {@link defaultValue}.
+ *
+ * @example
+ * ```ts
+ * import { None, Some } from "https://deno.land/x/optio/spec.ts";
+ * import { unwrapOr } from "https://deno.land/x/optio/mod.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * assertEquals(unwrapOr(Some.of(0), 1), 0);
+ * assertEquals(unwrapOr(None, 1), 1);
+ * ```
+ */
+export function unwrapOr<T>(option: Option<T>, defaultValue: T): T {
+  if (isSome(option)) return option.get;
+
+  return defaultValue;
+}
+
 /** Returns the contained `Some` value.
  *
  * @example
