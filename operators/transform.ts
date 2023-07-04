@@ -117,3 +117,20 @@ export function filter<T>(
 
   return None;
 }
+
+/** Converts from `Option<Option<T>>` to `Option<T>`.
+ * @example
+ * ```ts
+ * import { type Option, Some } from "https://deno.land/x/optio/spec.ts";
+ * import { flat } from "https://deno.land/x/optio/operators/transform.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * const option: Option<Option<number>> = Some.of(Some.of(0));
+ * assertEquals(flat(option), Some.of(0));
+ * ```
+ */
+export function flat<T>(option: Option<Option<T>>): Option<T> {
+  if (isNone(option)) return option;
+
+  return option.get;
+}

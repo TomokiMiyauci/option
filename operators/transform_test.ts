@@ -1,6 +1,6 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
 
-import { filter, map, mapOr, mapOrElse } from "./transform.ts";
+import { filter, flat, map, mapOr, mapOrElse } from "./transform.ts";
 import { None, Option, Some } from "../spec.ts";
 import {
   assert,
@@ -113,5 +113,16 @@ describe("filter", () => {
 
     const opt = filter(option, isString);
     assertType<IsExact<typeof opt, Option<string>>>(true);
+  });
+});
+
+describe("flat", () => {
+  it("should return unwrapped option", () => {
+    const option: Option<Option<number>> = Some.of(Some.of(0));
+    assertEquals(flat(option), Some.of(0));
+  });
+
+  it("should return None if None", () => {
+    assertEquals(flat(None), None);
   });
 });
