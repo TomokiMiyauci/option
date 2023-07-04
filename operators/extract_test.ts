@@ -1,9 +1,16 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
 // This module is browser compatible.
 
-import { expect, unwrap, unwrapOr } from "./extract.ts";
+import { expect, unwrap, unwrapOr, unwrapOrElse } from "./extract.ts";
 import { None, Some } from "../spec.ts";
-import { assertEquals, assertThrows, describe, it } from "../_dev_deps.ts";
+import {
+  assertEquals,
+  assertSpyCalls,
+  assertThrows,
+  describe,
+  it,
+  spy,
+} from "../_dev_deps.ts";
 
 describe("unwrap", () => {
   it("should return some value", () => {
@@ -22,6 +29,20 @@ describe("unwrapOr", () => {
 
   it("should default value if None", () => {
     assertEquals(unwrapOr(None, 1), 1);
+  });
+});
+
+describe("unwrapOrElse", () => {
+  it("should some value if some", () => {
+    const fn = spy(() => 1);
+    assertEquals(unwrapOrElse(Some.of(0), fn), 0);
+    assertSpyCalls(fn, 0);
+  });
+
+  it("should default value if None", () => {
+    const fn = spy(() => 1);
+    assertEquals(unwrapOrElse(None, fn), 1);
+    assertSpyCalls(fn, 1);
   });
 });
 

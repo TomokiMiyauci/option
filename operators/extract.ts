@@ -48,6 +48,24 @@ export function unwrapOr<T>(option: Option<T>, defaultValue: T): T {
   return defaultValue;
 }
 
+/** Returns the contained `Some` value, otherwise computes it from a closure.
+ *
+ * @example
+ * ```ts
+ * import { None, Some } from "https://deno.land/x/optio/spec.ts";
+ * import { unwrapOrElse } from "https://deno.land/x/optio/operators/extract.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * assertEquals(unwrapOrElse(Some.of(0), () => 2 ** 3), 0);
+ * assertEquals(unwrapOrElse(None, () => 2 ** 3), 8);
+ * ```
+ */
+export function unwrapOrElse<T>(option: Option<T>, fn: () => T): T {
+  if (isSome(option)) return option.get;
+
+  return fn();
+}
+
 /** Returns the contained `Some` value.
  *
  * @example
