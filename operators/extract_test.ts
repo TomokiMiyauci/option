@@ -1,10 +1,10 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
-// This module is browser compatible.
 
-import { expect, unwrap, unwrapOr, unwrapOrElse } from "./extract.ts";
+import { expect, match, unwrap, unwrapOr, unwrapOrElse } from "./extract.ts";
 import { None, Some } from "../spec.ts";
 import {
   assertEquals,
+  assertSpyCallArgs,
   assertSpyCalls,
   assertThrows,
   describe,
@@ -59,5 +59,26 @@ describe("expect", () => {
   it("should throw custom error instance if None", () => {
     const message = "<message>";
     assertThrows(() => expect(None, message, RangeError), RangeError, message);
+  });
+});
+
+describe("match", () => {
+  it("should call Some if Some", () => {
+    const s = spy(() => 1);
+    const n = spy(() => 2);
+
+    assertEquals(match(Some.of(0), { Some: s, None: n }), 1);
+    assertSpyCalls(s, 1);
+    assertSpyCalls(n, 0);
+    assertSpyCallArgs(s, 0, [0]);
+  });
+
+  it("should call None if None", () => {
+    const s = spy(() => 1);
+    const n = spy(() => 2);
+
+    assertEquals(match(None, { Some: s, None: n }), 2);
+    assertSpyCalls(s, 0);
+    assertSpyCalls(n, 1);
   });
 });

@@ -111,3 +111,36 @@ export function expect<T>(
 
   throw new error(msg);
 }
+
+/** {@link Option} matcher. */
+export interface Matcher<T, U> {
+  /** Match on `Some`. */
+  Some: (value: T) => U;
+
+  /** Match on `None`. */
+  None: () => U;
+}
+
+/** Pattern matching for {@link option}. Match on {@link matcher.Some} if `Some`, otherwise match on {@link matcher.None}.
+ *
+ * @example
+ * ```ts
+ * import { None, type Option } from "https://deno.land/x/optio/spec.ts";
+ * import { match } from "https://deno.land/x/optio/operators/extract.ts";
+ *
+ * declare const option: Option<number>;
+ *
+ * match(option, {
+ *  Some: (value) => value,
+ *  None: () => 500,
+ * });
+ * ```
+ */
+export function match<T, U>(
+  option: Option<T>,
+  matcher: Readonly<Matcher<T, U>>,
+): U {
+  if (isSome(option)) return matcher.Some(option.get);
+
+  return matcher.None();
+}
