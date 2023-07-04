@@ -3,6 +3,7 @@
 
 import { isSome } from "./query.ts";
 import { type Option, Some } from "../spec.ts";
+import { isNone } from "../utils.ts";
 
 /** Maps an `Option<T>` to `Option<U>` by applying a function to a contained value(if `Some`) or returns `None`(if `None`).
  *
@@ -42,12 +43,12 @@ export function mapOr<T, U>(
   defaultValue: U,
   fn: (value: T) => U,
 ): U {
-  if (isSome(option)) return fn(option.get);
+  if (isNone(option)) return defaultValue;
 
-  return defaultValue;
+  return fn(option.get);
 }
 
-/** Computes a default function result (if none), or applies a different function to the contained value (if any).
+/** Computes a default function result (if `None`), or applies a different function to the contained value (if `Some`).
  *
  * @example
  * ```ts
@@ -63,7 +64,7 @@ export function mapOrElse<T, U>(
   defaultFn: () => U,
   fn: (value: T) => U,
 ): U {
-  if (isSome(option)) return fn(option.get);
+  if (isNone(option)) return defaultFn();
 
-  return defaultFn();
+  return fn(option.get);
 }
