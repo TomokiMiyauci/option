@@ -25,3 +25,24 @@ export function map<T, U>(
 
   return option;
 }
+
+/** Returns the provided default value (if `None`), or applies a function to the contained value (if `Some`).
+ *
+ * @example
+ * ```ts
+ * import { mapOr, Option, Some } from "https://deno.land/x/optio/mod.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * const option: Option<string> = Some.of("Hello");
+ * assertEquals(mapOr(option, 0, ({ length }) => length), 5);
+ * ```
+ */
+export function mapOr<T, U>(
+  option: Option<T>,
+  defaultValue: U,
+  fn: (value: T) => U,
+): U {
+  if (isSome(option)) return fn(option.get);
+
+  return defaultValue;
+}
