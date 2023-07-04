@@ -29,3 +29,49 @@ export function unwrap<T>(option: Option<T>): T {
 
   throw new Error("option is None");
 }
+
+/** Returns the contained `Some` value.
+ *
+ * @example
+ * ```ts
+ * import { Some } from "https://deno.land/x/optio/spec.ts";
+ * import { expect } from "https://deno.land/x/optio/operators/extract.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * const option = Some.of(0);
+ * declare const message: string;
+ *
+ * assertEquals(expect(option, message), 0);
+ * ```
+ *
+ * @throws {Error} {@link msg}
+ * @example
+ * ```ts
+ * import { None } from "https://deno.land/x/optio/spec.ts";
+ * import { expect } from "https://deno.land/x/optio/mod.ts";
+ * import { assertThrows } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * declare const message: string;
+ * assertThrows(() => expect(None, message), Error, message);
+ * ```
+ *
+ * Change error constructor:
+ * @example
+ * ```ts
+ * import { None } from "https://deno.land/x/optio/spec.ts";
+ * import { expect } from "https://deno.land/x/optio/mod.ts";
+ * import { assertThrows } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * declare const message: string;
+ * assertThrows(() => expect(None, message, RangeError), RangeError, message);
+ * ```
+ */
+export function expect<T>(
+  option: Option<T>,
+  msg: string,
+  error: ErrorConstructor = Error,
+): T {
+  if (isSome(option)) return option.get;
+
+  throw new error(msg);
+}
