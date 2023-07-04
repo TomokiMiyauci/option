@@ -1,6 +1,6 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
 
-import { filter, flat, map, mapOr, mapOrElse } from "./transform.ts";
+import { filter, flat, map, mapOr, mapOrElse, zip } from "./transform.ts";
 import { None, Option, Some } from "../spec.ts";
 import {
   assert,
@@ -124,5 +124,17 @@ describe("flat", () => {
 
   it("should return None if None", () => {
     assertEquals(flat(None), None);
+  });
+});
+
+describe("zip", () => {
+  it("should return Some of tuple if option and other option is Some", () => {
+    assertEquals(zip(Some.of(0), Some.of(1)), Some.of<[0, 1]>([0, 1]));
+  });
+
+  it("should return None if option or other is None", () => {
+    assertEquals(zip(Some.of(0), None), None);
+    assertEquals(zip(None, Some.of(0)), None);
+    assertEquals(zip(None, None), None);
   });
 });

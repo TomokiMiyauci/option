@@ -134,3 +134,28 @@ export function flat<T>(option: Option<Option<T>>): Option<T> {
 
   return option.get;
 }
+
+/** Zips {@link option} with another {@link Option}.
+ *
+ * If {@link option} is `Some<T>` and other is `Some<U>`,
+ * returns `Some<[T, U]>`; Otherwise `None`.
+ *
+ * @example
+ * ```ts
+ * import { None, Some } from "https://deno.land/x/optio/spec.ts";
+ * import { zip } from "https://deno.land/x/optio/operators/transform.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * assertEquals(zip(Some.of(0), Some.of(1)), Some.of<[0, 1]>([0, 1]));
+ * assertEquals(zip(Some.of(0), None), None);
+ * ```
+ */
+export function zip<T, U>(
+  option: Option<T>,
+  other: Option<U>,
+): Option<[T, U]> {
+  if (isNone(option) || isNone(other)) return None;
+
+  const tuple: [T, U] = [option.get, other.get];
+  return Some.of(tuple);
+}
