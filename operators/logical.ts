@@ -24,6 +24,24 @@ export function or<T>(option: Option<T>, obtb: Option<T>): Option<T> {
   return obtb;
 }
 
+/** Returns the {@link option} if it {@link Some}, otherwise calls {@link fn} and returns the result.
+ *
+ * @example
+ * ```ts
+ * import { orElse } from "https://deno.land/x/optio/operators/logical.ts";
+ * import { None, Some } from "https://deno.land/x/optio/mod.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * assertEquals(orElse(Some.of(0), () => Some.of(1)), Some.of(0));
+ * assertEquals(orElse(None, () => Some.of(1)), Some.of(1));
+ * ```
+ */
+export function orElse<T>(option: Option<T>, fn: () => Option<T>): Option<T> {
+  if (isSome(option)) return option;
+
+  return fn();
+}
+
 /** Returns `None` if the `option` is `None`, otherwise returns `optb`.
  *
  * @example

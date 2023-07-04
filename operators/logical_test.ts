@@ -1,6 +1,6 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
 
-import { and, andThen, or, xor } from "./logical.ts";
+import { and, andThen, or, orElse, xor } from "./logical.ts";
 import { None, Some } from "../spec.ts";
 import {
   assert,
@@ -62,5 +62,19 @@ describe("andThen", () => {
     const fn = spy((v: number) => v ** 3);
     assertEquals(andThen(None, fn), None);
     assertSpyCalls(fn, 0);
+  });
+});
+
+describe("orElse", () => {
+  it("should return Some and call fn if option is Some", () => {
+    const fn = spy(() => Some.of(1));
+    assertEquals(orElse(Some.of(0), fn), Some.of(0));
+    assertSpyCalls(fn, 0);
+  });
+
+  it("should return None if option is None", () => {
+    const fn = spy(() => Some.of(1));
+    assertEquals(orElse(None, fn), Some.of(1));
+    assertSpyCalls(fn, 1);
   });
 });
