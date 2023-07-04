@@ -2,7 +2,7 @@
 // This module is browser compatible.
 
 import { isNone, isSome } from "./query.ts";
-import { None, type Option } from "../spec.ts";
+import { None, type Option, Some } from "../spec.ts";
 
 /** Returns the {@link option} if it contains a value, otherwise returns {@link obtb}.
  *
@@ -45,6 +45,29 @@ export function and<T>(option: Option<unknown>, optb: Option<T>): Option<T> {
   if (isNone(option)) return option;
 
   return optb;
+}
+
+/** Returns {@link None} if the {@link option} is {@link None}, otherwise calls {@link fn} with the wrapped value and returns the result.
+ *
+ * @example
+ * ```ts
+ * import { None, Some } from "https://deno.land/x/optio/spec.ts";
+ * import { andThen } from "https://deno.land/x/optio/mod.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * declare const square: (value: number) => number;
+ *
+ * assertEquals(andThen(Some.of(3), square), Some.of(9));
+ * assertEquals(andThen(None, square), None);
+ * ```
+ */
+export function andThen<T, U>(
+  option: Option<T>,
+  fn: (value: T) => U,
+): Option<U> {
+  if (isNone(option)) return option;
+
+  return Some.of(fn(option.get));
 }
 
 /** Returns `Some` if exactly one of {@link option}, {@link optb} is `Some`, otherwise returns `None`.

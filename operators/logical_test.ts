@@ -1,9 +1,16 @@
 // Copyright © 2023 Tomoki Miyauchi. All rights reserved. MIT license.
-// This module is browser compatible.
 
-import { and, or, xor } from "./logical.ts";
+import { and, andThen, or, xor } from "./logical.ts";
 import { None, Some } from "../spec.ts";
-import { assert, describe, it } from "../_dev_deps.ts";
+import {
+  assert,
+  assertEquals,
+  assertSpyCallArgs,
+  assertSpyCalls,
+  describe,
+  it,
+  spy,
+} from "../_dev_deps.ts";
 
 describe("or", () => {
   it("should return option if it is Some", () => {
@@ -32,21 +39,28 @@ describe("and", () => {
 });
 
 describe("xor", () => {
-  it("should return Some if Some, None", () => {
+  it("should return Some if one of option or optb is Some, otherwise None", () => {
     const option = Some.of(0);
-    assert(xor(option, None) === option);
-  });
-
-  it("should return Some if None, Some", () => {
     const optb = Some.of(0);
+
+    assert(xor(option, None) === option);
     assert(xor(None, optb) === optb);
-  });
-
-  it("should return None if Some, Some", () => {
     assert(xor(Some.of(0), Some.of(1)) === None);
+    assert(xor(None, None) === None);
+  });
+});
+
+describe("andThen", () => {
+  it("should return Some and call fn if option is Some", () => {
+    const fn = spy((v: number) => v ** 3);
+    assertEquals(andThen(Some.of(2), fn), Some.of(8));
+    assertSpyCalls(fn, 1);
+    assertSpyCallArgs(fn, 0, [2]);
   });
 
-  it("should return None if None, None", () => {
-    assert(xor(None, None) === None);
+  it("should return None if option is None", () => {
+    const fn = spy((v: number) => v ** 3);
+    assertEquals(andThen(None, fn), None);
+    assertSpyCalls(fn, 0);
   });
 });
