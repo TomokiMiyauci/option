@@ -11,7 +11,7 @@
  * @module
  */
 
-export { None, type Option, Some } from "./spec.ts";
+export { None, type Option, OptionType, Some } from "./spec.ts";
 export {
   filter,
   flat,
