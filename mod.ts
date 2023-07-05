@@ -2,10 +2,10 @@
 // This module is browser compatible.
 
 /** Optional values.
- * Type {@linkcode Option} represents an optional value: every {@link Option} is either `Some` and contains a value, or {@link None}, and does not.
+ * Type {@linkcode Option} represents an optional value: every {@linkcode Option} is either {@linkcode Some} and contains a value, or {@linkcode None}, and does not.
  *
  * ## Querying the variant
- * The {@link isSome} and {@link isNone} return `true` if the {@link Option} is {@link Some} or {@link None},
+ * The {@linkcode isSome} and {@linkcode isNone} return `true` if the {@linkcode Option} is {@linkcode Some} or {@linkcode None},
  * respectively.
  *
  * @module
