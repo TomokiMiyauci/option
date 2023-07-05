@@ -3,24 +3,24 @@
 
 /** The option type. */
 export enum OptionType {
-  Some = "some",
-  None = "none",
+  Some,
+  None,
 }
 
 /** Common type. */
 interface Container {
   /** Option type. */
-  type: OptionType;
+  get type(): OptionType;
 }
 
 /** The {@link None} API. */
 export interface None extends Container {
-  type: OptionType.None;
+  get type(): OptionType.None;
 }
 
 /** The {@link Some} API. */
 export interface Some<T> extends Container {
-  type: OptionType.Some;
+  get type(): OptionType.Some;
 
   /** Return contained {@link T}. */
   get get(): T;
@@ -37,7 +37,9 @@ export const None: None = { type: OptionType.None };
 /** {@link Some} constructor. */
 export const Some: SomeConstructor = function Some<T>(value: T): Some<T> {
   return {
-    type: OptionType.Some,
+    get type(): OptionType.Some {
+      return OptionType.Some;
+    },
     get get(): T {
       return value;
     },
