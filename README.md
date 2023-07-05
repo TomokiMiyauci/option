@@ -18,7 +18,6 @@ Minimum option type port of Rust.
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
-- [Documentation](#documentation)
 - [Feature](#feature)
 - [API](#api)
 - [Acknowledgements](#acknowledgements)
@@ -56,9 +55,12 @@ npm i @miyauci/option
 
 ## Usage
 
-Type `Option` represents an optional value.
+Type [Option](https://deno.land/x/optio/mod.ts?s=Option) represents an optional
+value.
 
-Every `Option` is either `Some` and contains a value, or `None`, and does not.
+Every [Option](https://deno.land/x/optio/mod.ts?s=Option) is either
+[Some](https://deno.land/x/optio/mod.ts?s=Some) and contains a value, or
+[None](https://deno.land/x/optio/mod.ts?s=None), and does not.
 
 ```ts
 import {
@@ -78,11 +80,9 @@ const opt = divide(100, 0);
 expect(opt, "divide by 0");
 ```
 
-All operators for `Option` are separated from prototype.
-
-## Documentation
-
-- [Operators](operators/README.md)
+All [operators](https://deno.land/x/optio/mod.ts#Functions) for
+[Option](https://deno.land/x/optio/mod.ts?s=Option) are separated from
+prototype.
 
 ## Feature
 
