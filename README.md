@@ -56,9 +56,12 @@ npm i @miyauci/option
 
 ## Usage
 
-Type `Option` represents an optional value.
+Type [Option](https://deno.land/x/optio/mod.ts?s=Option) represents an optional
+value.
 
-Every `Option` is either `Some` and contains a value, or `None`, and does not.
+Every [Option](https://deno.land/x/optio/mod.ts?s=Option) is either
+[Some](https://deno.land/x/optio/mod.ts?s=Some) and contains a value, or
+[None](https://deno.land/x/optio/mod.ts?s=None), and does not.
 
 ```ts
 import {
@@ -78,7 +81,8 @@ const opt = divide(100, 0);
 expect(opt, "divide by 0");
 ```
 
-All operators for `Option` are separated from prototype.
+All operators for [Option](https://deno.land/x/optio/mod.ts?s=Some) are
+separated from prototype.
 
 ## Documentation
 
