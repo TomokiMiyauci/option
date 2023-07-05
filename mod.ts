@@ -4,6 +4,9 @@
 /** Optional values.
  * Type {@linkcode Option} represents an optional value: every {@linkcode Option} is either {@linkcode Some} and contains a value, or {@linkcode None}, and does not.
  *
+ * ## Operators overview
+ * {@linkcode Option} provides a wide variety of different operators.
+ *
  * ## Querying the variant
  * The {@linkcode isSome} and {@linkcode isNone} return `true` if the {@linkcode Option} is {@linkcode Some} or {@linkcode None},
  * respectively.
