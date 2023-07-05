@@ -3,8 +3,8 @@
 
 /** The option type. */
 export enum OptionType {
-  Some,
   None,
+  Some,
 }
 
 /** Common type. */
