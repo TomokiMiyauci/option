@@ -11,7 +11,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
-Rust style minimum option type.
+Minimum option type port of Rust.
 
 ## Table of Contents <!-- omit in toc -->
 
