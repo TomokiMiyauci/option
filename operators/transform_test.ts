@@ -18,11 +18,11 @@ import {
 describe("map", () => {
   it("should call mapper if it is some", () => {
     const INPUT = "Hello, World!";
-    const option: Option<string> = Some.of(INPUT);
+    const option: Option<string> = Some(INPUT);
     const fn = spy((v: string) => v.length);
     const optionLen = map(option, fn);
 
-    assertEquals(optionLen, Some.of(13));
+    assertEquals(optionLen, Some(13));
     assertSpyCalls(fn, 1);
     assertSpyCallArgs(fn, 0, [INPUT]);
   });
@@ -40,7 +40,7 @@ describe("map", () => {
 describe("mapOr", () => {
   it("should call mapper if it is some", () => {
     const INPUT = "Hello, World!";
-    const option: Option<string> = Some.of(INPUT);
+    const option: Option<string> = Some(INPUT);
     const fn = spy((v: string) => v.length);
     const optionLen = mapOr(option, 0, fn);
 
@@ -62,7 +62,7 @@ describe("mapOr", () => {
 describe("mapOrElse", () => {
   it("should call mapper if it is some", () => {
     const INPUT = "Hello, World!";
-    const option: Option<string> = Some.of(INPUT);
+    const option: Option<string> = Some(INPUT);
     const fn = spy((v: string) => v.length);
     const defaultFn = spy(() => 0);
     const optionLen = mapOrElse(option, defaultFn, fn);
@@ -94,7 +94,7 @@ describe("filter", () => {
 
   it("should return Some if Some and predicate is true", () => {
     const predicate = spy(() => true);
-    const some = Some.of(0);
+    const some = Some(0);
     assert(filter(some, predicate) === some);
     assertSpyCalls(predicate, 1);
     assertSpyCallArgs(predicate, 0, [0]);
@@ -102,14 +102,14 @@ describe("filter", () => {
 
   it("should return None if Some and predicate is false", () => {
     const predicate = spy(() => false);
-    const some = Some.of(0);
+    const some = Some(0);
     assert(filter(some, predicate) === None);
     assertSpyCalls(predicate, 1);
     assertSpyCallArgs(predicate, 0, [0]);
   });
 
   it("should infer narrowing", () => {
-    const option: Option<string | number> = Some.of(0);
+    const option: Option<string | number> = Some(0);
 
     const opt = filter(option, isString);
     assertType<IsExact<typeof opt, Option<string>>>(true);
@@ -118,8 +118,8 @@ describe("filter", () => {
 
 describe("flat", () => {
   it("should return unwrapped option", () => {
-    const option: Option<Option<number>> = Some.of(Some.of(0));
-    assertEquals(flat(option), Some.of(0));
+    const option: Option<Option<number>> = Some(Some(0));
+    assertEquals(flat(option), Some(0));
   });
 
   it("should return None if None", () => {
@@ -129,12 +129,12 @@ describe("flat", () => {
 
 describe("zip", () => {
   it("should return Some of tuple if option and other option is Some", () => {
-    assertEquals(zip(Some.of(0), Some.of(1)), Some.of<[0, 1]>([0, 1]));
+    assertEquals(zip(Some(0), Some(1)), Some<[0, 1]>([0, 1]));
   });
 
   it("should return None if option or other is None", () => {
-    assertEquals(zip(Some.of(0), None), None);
-    assertEquals(zip(None, Some.of(0)), None);
+    assertEquals(zip(Some(0), None), None);
+    assertEquals(zip(None, Some(0)), None);
     assertEquals(zip(None, None), None);
   });
 });

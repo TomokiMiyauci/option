@@ -11,11 +11,11 @@ import { None, type Option, Some } from "../spec.ts";
  * import { None, or, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const x = Some.of(2);
- * assertEquals(or(x, None), Some.of(2));
+ * const x = Some(2);
+ * assertEquals(or(x, None), Some(2));
  *
  * const y = None;
- * assertEquals(or(y, Some.of(100)), Some.of(100));
+ * assertEquals(or(y, Some(100)), Some(100));
  * ```
  */
 export function or<T>(option: Option<T>, obtb: Option<T>): Option<T> {
@@ -32,8 +32,8 @@ export function or<T>(option: Option<T>, obtb: Option<T>): Option<T> {
  * import { None, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(orElse(Some.of(0), () => Some.of(1)), Some.of(0));
- * assertEquals(orElse(None, () => Some.of(1)), Some.of(1));
+ * assertEquals(orElse(Some(0), () => Some(1)), Some(0));
+ * assertEquals(orElse(None, () => Some(1)), Some(1));
  * ```
  */
 export function orElse<T>(option: Option<T>, fn: () => Option<T>): Option<T> {
@@ -75,7 +75,7 @@ export function and<T>(option: Option<unknown>, optb: Option<T>): Option<T> {
  *
  * declare const square: (value: number) => number;
  *
- * assertEquals(andThen(Some.of(3), square), Some.of(9));
+ * assertEquals(andThen(Some(3), square), Some(9));
  * assertEquals(andThen(None, square), None);
  * ```
  */
@@ -85,7 +85,7 @@ export function andThen<T, U>(
 ): Option<U> {
   if (isNone(option)) return option;
 
-  return Some.of(fn(option.get));
+  return Some(fn(option.get));
 }
 
 /** Returns `Some` if exactly one of {@link option}, {@link optb} is `Some`, otherwise returns `None`.

@@ -14,13 +14,13 @@ import {
 
 describe("or", () => {
   it("should return option if it is Some", () => {
-    const option = Some.of(0);
-    assert(or(option, Some.of(0)) === option);
+    const option = Some(0);
+    assert(or(option, Some(0)) === option);
     assert(or(option, None) === option);
   });
 
   it("should return optb if it is None", () => {
-    const optb = Some.of(0);
+    const optb = Some(0);
     assert(or(None, optb) === optb);
     assert(or(None, None) === None);
   });
@@ -28,8 +28,8 @@ describe("or", () => {
 
 describe("and", () => {
   it("should return Some if both of arg is some otherwise None", () => {
-    const some = Some.of(0);
-    const someb = Some.of(1);
+    const some = Some(0);
+    const someb = Some(1);
 
     assert(and(some, None) === None);
     assert(and(some, someb) === someb);
@@ -40,12 +40,12 @@ describe("and", () => {
 
 describe("xor", () => {
   it("should return Some if one of option or optb is Some, otherwise None", () => {
-    const option = Some.of(0);
-    const optb = Some.of(0);
+    const option = Some(0);
+    const optb = Some(0);
 
     assert(xor(option, None) === option);
     assert(xor(None, optb) === optb);
-    assert(xor(Some.of(0), Some.of(1)) === None);
+    assert(xor(Some(0), Some(1)) === None);
     assert(xor(None, None) === None);
   });
 });
@@ -53,7 +53,7 @@ describe("xor", () => {
 describe("andThen", () => {
   it("should return Some and call fn if option is Some", () => {
     const fn = spy((v: number) => v ** 3);
-    assertEquals(andThen(Some.of(2), fn), Some.of(8));
+    assertEquals(andThen(Some(2), fn), Some(8));
     assertSpyCalls(fn, 1);
     assertSpyCallArgs(fn, 0, [2]);
   });
@@ -67,14 +67,14 @@ describe("andThen", () => {
 
 describe("orElse", () => {
   it("should return Some and call fn if option is Some", () => {
-    const fn = spy(() => Some.of(1));
-    assertEquals(orElse(Some.of(0), fn), Some.of(0));
+    const fn = spy(() => Some(1));
+    assertEquals(orElse(Some(0), fn), Some(0));
     assertSpyCalls(fn, 0);
   });
 
   it("should return None if option is None", () => {
-    const fn = spy(() => Some.of(1));
-    assertEquals(orElse(None, fn), Some.of(1));
+    const fn = spy(() => Some(1));
+    assertEquals(orElse(None, fn), Some(1));
     assertSpyCalls(fn, 1);
   });
 });

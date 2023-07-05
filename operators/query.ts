@@ -10,7 +10,7 @@ import { type None, type Option, OptionType, type Some } from "../spec.ts";
  * import { isSome, Option, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option: Option<number> = Some.of(2);
+ * const option: Option<number> = Some(2);
  * assert(isSome(option));
  * ```
  */

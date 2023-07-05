@@ -11,17 +11,17 @@ import { None, type Option, Some } from "../spec.ts";
  * import { map, Option, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option: Option<string> = Some.of("Hello, World!");
+ * const option: Option<string> = Some("Hello, World!");
  * const optionLen = map(option, (v) => v.length);
  *
- * assertEquals(optionLen, Some.of(13));
+ * assertEquals(optionLen, Some(13));
  * ```
  */
 export function map<T, U>(
   option: Option<T>,
   fn: (value: T) => U,
 ): Option<U> {
-  if (isSome(option)) return Some.of(fn(option.get));
+  if (isSome(option)) return Some(fn(option.get));
 
   return option;
 }
@@ -33,7 +33,7 @@ export function map<T, U>(
  * import { mapOr, Option, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option: Option<string> = Some.of("Hello");
+ * const option: Option<string> = Some("Hello");
  * assertEquals(mapOr(option, 0, ({ length }) => length), 5);
  * ```
  */
@@ -54,7 +54,7 @@ export function mapOr<T, U>(
  * import { mapOrElse, Option, Some } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option: Option<string> = Some.of("Hello");
+ * const option: Option<string> = Some("Hello");
  * assertEquals(mapOrElse(option, () => 2 ** 3, ({ length }) => length), 5);
  * ```
  */
@@ -99,8 +99,8 @@ export function filter<T, U extends T = T>(
  *
  * declare const isEven: (value: number) => boolean;
  *
- * assertEquals(filter(Some.of(0), isEven), Some.of(0));
- * assertEquals(filter(Some.of(1), isEven), None);
+ * assertEquals(filter(Some(0), isEven), Some(0));
+ * assertEquals(filter(Some(1), isEven), None);
  * assertEquals(filter(None, isEven), None);
  * ```
  */
@@ -125,8 +125,8 @@ export function filter<T>(
  * import { flat } from "https://deno.land/x/optio/operators/transform.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option: Option<Option<number>> = Some.of(Some.of(0));
- * assertEquals(flat(option), Some.of(0));
+ * const option: Option<Option<number>> = Some(Some(0));
+ * assertEquals(flat(option), Some(0));
  * ```
  */
 export function flat<T>(option: Option<Option<T>>): Option<T> {
@@ -146,8 +146,8 @@ export function flat<T>(option: Option<Option<T>>): Option<T> {
  * import { zip } from "https://deno.land/x/optio/operators/transform.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(zip(Some.of(0), Some.of(1)), Some.of<[0, 1]>([0, 1]));
- * assertEquals(zip(Some.of(0), None), None);
+ * assertEquals(zip(Some(0), Some(1)), Some<[0, 1]>([0, 1]));
+ * assertEquals(zip(Some(0), None), None);
  * ```
  */
 export function zip<T, U>(
@@ -157,5 +157,5 @@ export function zip<T, U>(
   if (isNone(option) || isNone(other)) return None;
 
   const tuple: [T, U] = [option.get, other.get];
-  return Some.of(tuple);
+  return Some(tuple);
 }

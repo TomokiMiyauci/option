@@ -6,7 +6,7 @@ import { assert, assertFalse, describe, it } from "../_dev_deps.ts";
 
 describe("isSome", () => {
   it("should return true if it is Some", () => {
-    assert(isSome(Some.of(0)));
+    assert(isSome(Some(0)));
   });
 
   it("should return false if it is None", () => {
@@ -20,6 +20,6 @@ describe("isNone", () => {
   });
 
   it("should return false if it is Some", () => {
-    assertFalse(isNone(Some.of(0)));
+    assertFalse(isNone(Some(0)));
   });
 });

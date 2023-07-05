@@ -12,7 +12,7 @@ import { type Option } from "../spec.ts";
  * import { unwrap } from "https://deno.land/x/optio/operators/extract.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(unwrap(Some.of(0)), 0);
+ * assertEquals(unwrap(Some(0)), 0);
  * ```
  * @throws {Error} if the {@link option} is `None`.
  * @example
@@ -38,7 +38,7 @@ export function unwrap<T>(option: Option<T>): T {
  * import { unwrapOr } from "https://deno.land/x/optio/mod.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(unwrapOr(Some.of(0), 1), 0);
+ * assertEquals(unwrapOr(Some(0), 1), 0);
  * assertEquals(unwrapOr(None, 1), 1);
  * ```
  */
@@ -56,7 +56,7 @@ export function unwrapOr<T>(option: Option<T>, defaultValue: T): T {
  * import { unwrapOrElse } from "https://deno.land/x/optio/operators/extract.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(unwrapOrElse(Some.of(0), () => 2 ** 3), 0);
+ * assertEquals(unwrapOrElse(Some(0), () => 2 ** 3), 0);
  * assertEquals(unwrapOrElse(None, () => 2 ** 3), 8);
  * ```
  */
@@ -74,7 +74,7 @@ export function unwrapOrElse<T>(option: Option<T>, fn: () => T): T {
  * import { expect } from "https://deno.land/x/optio/operators/extract.ts";
  * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
- * const option = Some.of(0);
+ * const option = Some(0);
  * declare const message: string;
  *
  * assertEquals(expect(option, message), 0);

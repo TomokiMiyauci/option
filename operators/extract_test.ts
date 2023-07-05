@@ -14,7 +14,7 @@ import {
 
 describe("unwrap", () => {
   it("should return some value", () => {
-    assertEquals(unwrap(Some.of(0)), 0);
+    assertEquals(unwrap(Some(0)), 0);
   });
 
   it("should throw error if None", () => {
@@ -24,7 +24,7 @@ describe("unwrap", () => {
 
 describe("unwrapOr", () => {
   it("should some value if some", () => {
-    assertEquals(unwrapOr(Some.of(0), 1), 0);
+    assertEquals(unwrapOr(Some(0), 1), 0);
   });
 
   it("should default value if None", () => {
@@ -35,7 +35,7 @@ describe("unwrapOr", () => {
 describe("unwrapOrElse", () => {
   it("should some value if some", () => {
     const fn = spy(() => 1);
-    assertEquals(unwrapOrElse(Some.of(0), fn), 0);
+    assertEquals(unwrapOrElse(Some(0), fn), 0);
     assertSpyCalls(fn, 0);
   });
 
@@ -48,7 +48,7 @@ describe("unwrapOrElse", () => {
 
 describe("expect", () => {
   it("should return some value", () => {
-    assertEquals(expect(Some.of(0), ""), 0);
+    assertEquals(expect(Some(0), ""), 0);
   });
 
   it("should throw error if None", () => {
@@ -67,7 +67,7 @@ describe("match", () => {
     const s = spy(() => 1);
     const n = spy(() => 2);
 
-    assertEquals(match(Some.of(0), { Some: s, None: n }), 1);
+    assertEquals(match(Some(0), { Some: s, None: n }), 1);
     assertSpyCalls(s, 1);
     assertSpyCalls(n, 0);
     assertSpyCallArgs(s, 0, [0]);
