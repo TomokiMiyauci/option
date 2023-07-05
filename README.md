@@ -27,7 +27,8 @@ Minimum option type port of Rust.
 
 ## Background
 
-This project provides minimum option features.
+This project provides minimum option features. They are designed to be optimized
+in tree-shaking.
 
 One of the existing challenges in the JavaScript/TypeScript community is
 tree-shaking. Due to the dynamic nature of the language, tree-shaking can only
