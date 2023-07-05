@@ -4,7 +4,7 @@
 import { isSome } from "./query.ts";
 import { type Option } from "../spec.ts";
 
-/** Returns the contained `Some` value.
+/** Returns the contained {@linkcode Some} value.
  *
  * @example
  * ```ts
@@ -14,7 +14,7 @@ import { type Option } from "../spec.ts";
  *
  * assertEquals(unwrap(Some(0)), 0);
  * ```
- * @throws {Error} if the {@link option} is `None`.
+ * @throws {Error} if the {@linkcode option} is {@linkcode None}.
  * @example
  * ```ts
  * import { None } from "https://deno.land/x/optio/spec.ts";
@@ -30,7 +30,7 @@ export function unwrap<T>(option: Option<T>): T {
   throw new Error("option is None");
 }
 
-/** Returns the contained `Some` value, otherwise {@link defaultValue}.
+/** Returns the contained {@linkcode Some} value, otherwise {@linkcode defaultValue}.
  *
  * @example
  * ```ts
@@ -48,7 +48,7 @@ export function unwrapOr<T>(option: Option<T>, defaultValue: T): T {
   return defaultValue;
 }
 
-/** Returns the contained `Some` value, otherwise computes it from a closure.
+/** Returns the contained {@linkcode Some} value, otherwise computes it from a closure.
  *
  * @example
  * ```ts
@@ -80,7 +80,7 @@ export function unwrapOrElse<T>(option: Option<T>, fn: () => T): T {
  * assertEquals(expect(option, message), 0);
  * ```
  *
- * @throws {Error} {@link msg}
+ * @throws {Error} {@linkcode msg}
  * @example
  * ```ts
  * import { None } from "https://deno.land/x/optio/spec.ts";
@@ -112,16 +112,16 @@ export function expect<T>(
   throw new error(msg);
 }
 
-/** {@link Option} matcher. */
+/** {@linkcode Option} matcher. */
 export interface Matcher<T, U> {
-  /** Match on `Some`. */
+  /** Match on {@linkcode Some}. */
   Some: (value: T) => U;
 
-  /** Match on `None`. */
+  /** Match on {@linkcode None}. */
   None: () => U;
 }
 
-/** Pattern matching for {@link option}. Match on {@link matcher.Some} if `Some`, otherwise match on {@link matcher.None}.
+/** Pattern matching for {@linkcode option}. Match on {@linkcode matcher.Some} if {@linkcode Some}, otherwise match on {@linkcode matcher.None}.
  *
  * @example
  * ```ts

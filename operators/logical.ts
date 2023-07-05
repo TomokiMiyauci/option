@@ -4,7 +4,7 @@
 import { isNone, isSome } from "./query.ts";
 import { None, type Option, Some } from "../spec.ts";
 
-/** Returns the {@link option} if it contains a value, otherwise returns {@link obtb}.
+/** Returns the {@linkcode option} if it contains a value, otherwise returns {@linkcode obtb}.
  *
  * @example
  * ```ts
@@ -24,7 +24,7 @@ export function or<T>(option: Option<T>, obtb: Option<T>): Option<T> {
   return obtb;
 }
 
-/** Returns the {@link option} if it {@link Some}, otherwise calls {@link fn} and returns the result.
+/** Returns the {@linkcode option} if it {@linkcode Some}, otherwise calls {@linkcode fn} and returns the result.
  *
  * @example
  * ```ts
@@ -42,7 +42,7 @@ export function orElse<T>(option: Option<T>, fn: () => Option<T>): Option<T> {
   return fn();
 }
 
-/** Returns `None` if the `option` is `None`, otherwise returns `optb`.
+/** Returns {@linkcode None} if the {@linkcode option} is {@linkcode None}, otherwise returns {@linkcode optb}.
  *
  * @example
  * ```ts
@@ -65,7 +65,7 @@ export function and<T>(option: Option<unknown>, optb: Option<T>): Option<T> {
   return optb;
 }
 
-/** Returns {@link None} if the {@link option} is {@link None}, otherwise calls {@link fn} with the wrapped value and returns the result.
+/** Returns {@linkcode None} if the {@linkcode option} is {@linkcode None}, otherwise calls {@linkcode fn} with the wrapped value and returns the result.
  *
  * @example
  * ```ts
@@ -88,7 +88,7 @@ export function andThen<T, U>(
   return Some(fn(option.get));
 }
 
-/** Returns `Some` if exactly one of {@link option}, {@link optb} is `Some`, otherwise returns `None`.
+/** Returns {@linkcode Some} if exactly one of {@linkcode option}, {@linkcode optb} is {@linkcode Some}, otherwise returns {@linkcode None}.
  *
  * @example
  * ```ts

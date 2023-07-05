@@ -9,32 +9,32 @@ export enum OptionType {
 
 /** Common type. */
 interface Container {
-  /** Option type. */
+  /** {@linkcode Option} type. */
   get type(): OptionType;
 }
 
-/** The {@link None} API. */
+/** The {@linkcode None} API. */
 export interface None extends Container {
   get type(): OptionType.None;
 }
 
-/** The {@link Some} API. */
+/** The {@linkcode Some} API. */
 export interface Some<T> extends Container {
   get type(): OptionType.Some;
 
-  /** Return contained {@link T}. */
+  /** Return contained {@linkcode T}. */
   get get(): T;
 }
 
 export interface SomeConstructor {
-  /** {@link Some} value of type {@link T} . */
+  /** {@linkcode Some} value of type {@linkcode T} . */
   <const T>(value: T): Some<T>;
 }
 
 /** No value. */
 export const None: None = { type: OptionType.None };
 
-/** {@link Some} constructor.
+/** {@linkcode Some} constructor.
  *
  * @example
  * ```ts
@@ -53,5 +53,5 @@ export const Some: SomeConstructor = function Some<T>(value: T): Some<T> {
   };
 };
 
-/** Representation of {@link Some} or {@link None}. */
+/** Representation of {@linkcode Some} or {@linkcode None}. */
 export type Option<T> = Some<T> | None;

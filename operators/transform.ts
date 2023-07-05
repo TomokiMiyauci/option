@@ -4,7 +4,7 @@
 import { isNone, isSome } from "./query.ts";
 import { None, type Option, Some } from "../spec.ts";
 
-/** Maps an `Option<T>` to `Option<U>` by applying a function to a contained value(if `Some`) or returns `None`(if `None`).
+/** Maps an {@linkcode Option<T>} to {@linkcode Option<U>} by applying a function to a contained value(if {@linkcode Some}) or returns {@linkcode None}(if {@linkcode None}).
  *
  * @example
  * ```ts
@@ -26,7 +26,7 @@ export function map<T, U>(
   return option;
 }
 
-/** Returns the provided default value (if `None`), or applies a function to the contained value (if `Some`).
+/** Returns the provided default value (if {@linkcode None}), or applies a function to the contained value (if {@linkcode Some}).
  *
  * @example
  * ```ts
@@ -47,7 +47,7 @@ export function mapOr<T, U>(
   return fn(option.get);
 }
 
-/** Computes a default function result (if `None`), or applies a different function to the contained value (if `Some`).
+/** Computes a default function result (if {@linkcode None}), or applies a different function to the contained value (if {@linkcode Some}).
  *
  * @example
  * ```ts
@@ -68,9 +68,9 @@ export function mapOrElse<T, U>(
   return fn(option.get);
 }
 
-/** Returns {@link None} if the {@link option} is {@link None}, otherwise calls predicate with the wrapped value and returns:
- * - {@link Some} if predicate returns `true`.
- * - {@link None} if predicate returns `false`.
+/** Returns {@linkcode None} if the {@linkcode option} is {@linkcode None}, otherwise calls predicate with the wrapped value and returns:
+ * - {@linkcode Some} if predicate returns `true`.
+ * - {@linkcode None} if predicate returns `false`.
  *
  * @example
  * ```ts
@@ -118,7 +118,7 @@ export function filter<T>(
   return None;
 }
 
-/** Converts from `Option<Option<T>>` to `Option<T>`.
+/** Converts from {@linkcode Option<Option<T>>} to {@linkcode Option<T>}.
  * @example
  * ```ts
  * import { type Option, Some } from "https://deno.land/x/optio/spec.ts";
@@ -135,10 +135,10 @@ export function flat<T>(option: Option<Option<T>>): Option<T> {
   return option.get;
 }
 
-/** Zips {@link option} with another {@link Option}.
+/** Zips {@linkcode option} with another {@linkcode Option}.
  *
- * If {@link option} is `Some<T>` and other is `Some<U>`,
- * returns `Some<[T, U]>`; Otherwise `None`.
+ * If {@linkcode option} is {@linkcode Some<T>} and other is {@linkcode Some<U>},
+ * returns {@linkcode Some<[T, U]>}; Otherwise {@linkcode None}.
  *
  * @example
  * ```ts

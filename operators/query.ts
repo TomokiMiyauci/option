@@ -3,7 +3,7 @@
 
 import { type None, type Option, OptionType, type Some } from "../spec.ts";
 
-/** Returns `true` if the {@link option} is a {@link Some}.
+/** Returns `true` if the {@linkcode option} is a {@linkcode Some}.
  *
  * @example
  * ```ts
@@ -18,7 +18,7 @@ export function isSome<T>(option: Readonly<Option<T>>): option is Some<T> {
   return option.type === OptionType.Some;
 }
 
-/** Returns `true` if the {@link option} is a {@link None}.
+/** Returns `true` if the {@linkcode option} is a {@linkcode None}.
  *
  * @example
  * ```ts
