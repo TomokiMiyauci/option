@@ -34,7 +34,14 @@ export interface SomeConstructor {
 /** No value. */
 export const None: None = { type: OptionType.None };
 
-/** {@link Some} constructor. */
+/** {@link Some} constructor.
+ *
+ * @example
+ * ```ts
+ * import { Some } from "https://deno.land/x/optio/mod.ts";
+ * const some = Some(0);
+ * ```
+ */
 export const Some: SomeConstructor = function Some<T>(value: T): Some<T> {
   return {
     get type(): OptionType.Some {
