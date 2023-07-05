@@ -13,6 +13,18 @@
 
 Rust style minimum option type.
 
+## Table of Contents <!-- omit in toc -->
+
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Feature](#feature)
+- [API](#api)
+- [Acknowledgements](#acknowledgements)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Background
 
 This project provides minimum option features.
@@ -26,6 +38,20 @@ The only solution to this is separation into top-level functions. It is very
 unfortunate but true that no other method exists.
 
 Having said that, a [future proposal](#feature) could solve this.
+
+## Install
+
+deno.land:
+
+```ts
+import * as mod from "https://deno.land/x/optio/mod.ts";
+```
+
+npm:
+
+```bash
+npm i @miyauci/option
+```
 
 ## Usage
 
@@ -93,6 +119,10 @@ const result = option
     None: mapper
   })
 ```
+
+## API
+
+See [deno doc](https://deno.land/x/optio?doc) for all APIs.
 
 ## Acknowledgements
 
