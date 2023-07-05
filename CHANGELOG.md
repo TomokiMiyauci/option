@@ -1,3 +1,12 @@
+# [1.0.0-beta.2](https://github.com/TomokiMiyauci/option/compare/1.0.0-beta.1...1.0.0-beta.2) (2023-07-05)
+
+
+### Features
+
+* **mod:** export module ([5d03d44](https://github.com/TomokiMiyauci/option/commit/5d03d4486569507ee43650df0cce7056ee3ad4e9))
+* **spec:** change option type enum member ([5639f50](https://github.com/TomokiMiyauci/option/commit/5639f50503b1ed4d19d1f0ddc47c2814fa7cd541))
+* **spec:** switch option type enum ([4796a45](https://github.com/TomokiMiyauci/option/commit/4796a45893bf4f348cf14076e0a80c7fecb7bdb6))
+
 # 1.0.0-beta.1 (2023-07-05)
 
 
