@@ -27,7 +27,7 @@ export interface Some<T> extends Container {
 }
 
 export interface SomeConstructor {
-  /** {@link Some} value of type {@link T } . */
+  /** {@link Some} value of type {@link T} . */
   <const T>(value: T): Some<T>;
 }
 
