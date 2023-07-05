@@ -18,7 +18,6 @@ Minimum option type port of Rust.
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
-- [Documentation](#documentation)
 - [Feature](#feature)
 - [API](#api)
 - [Acknowledgements](#acknowledgements)
@@ -81,12 +80,9 @@ const opt = divide(100, 0);
 expect(opt, "divide by 0");
 ```
 
-All operators for [Option](https://deno.land/x/optio/mod.ts?s=Some) are
-separated from prototype.
-
-## Documentation
-
-- [Operators](operators/README.md)
+All [operators](https://deno.land/x/optio/mod.ts#Functions) for
+[Option](https://deno.land/x/optio/mod.ts?s=Option) are separated from
+prototype.
 
 ## Feature
 
